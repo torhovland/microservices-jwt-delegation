@@ -1,9 +1,12 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ServiceB
 {
@@ -26,6 +29,20 @@ namespace ServiceB
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.WithOrigins("https://localhost:44326")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +51,15 @@ namespace ServiceB
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseJwtBearerAuthentication();
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                Authority = "https://login.windows.net/yourdirectory.onmicrosoft.com",
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false, // The issuer may vary in a multitenant scenario.
+                    ValidateAudience = false, // Allowing passing a token among multiple services (audiences).
+                }
+            });
 
             app.UseMvc();
         }
