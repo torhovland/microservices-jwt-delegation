@@ -21,8 +21,9 @@ namespace ServiceA.Controllers
         {
             var user = HttpContext.User;
             var userId = user.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var email = user.FindFirst(ClaimTypes.Name).Value;
             var displayName = user.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
-            var serviceA = new[] { $"Service A has recognized you as {displayName} with identity {userId}." };
+            var serviceA = new[] { $"Service A has recognized you as {displayName} with email {email} and identity {userId}." };
 
             // Extract the token
             var token = HttpContext.Request.Headers["Authorization"][0].Substring("Bearer ".Length);
