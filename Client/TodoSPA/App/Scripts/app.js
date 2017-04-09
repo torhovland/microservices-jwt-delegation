@@ -5,9 +5,9 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
     $routeProvider.when("/Home", {
         controller: "homeCtrl",
         templateUrl: "/App/Views/Home.html",
-    }).when("/TodoList", {
-        controller: "todoListCtrl",
-        templateUrl: "/App/Views/TodoList.html",
+    }).when("/ServiceCalls", {
+        controller: "serviceCallsCtrl",
+        templateUrl: "/App/Views/ServiceCalls.html",
         requireADLogin: true,
     }).when("/UserData", {
         controller: "userDataCtrl",
@@ -17,8 +17,8 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
     adalProvider.init(
         {
             instance: 'https://login.microsoftonline.com/', 
-            tenant: 'Enter your tenant name here e.g. contoso.onmicrosoft.com',
-            clientId: 'Enter your client ID here e.g. e9a5a8b6-8af7-4719-9821-0deef255f68e',
+            tenant: 'common', // If you want to allow anyone, otherwise your tenant name, e.g. contoso.onmicrosoft.com
+            clientId: '9dc3b0b3-2c5d-4a74-be4d-999999999999', // Enter your client ID here.'
             extraQueryParameter: 'nux=1',
             //cacheLocation: 'localStorage', // enable this for IE, as sessionStorage does not work for localhost.
         },

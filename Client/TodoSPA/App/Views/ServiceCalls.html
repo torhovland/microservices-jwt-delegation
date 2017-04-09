@@ -1,0 +1,10 @@
+﻿<div ng-init="populate()">
+    <p class="error">{{error}}</p>
+    <p>{{loadingMessage}}</p>
+    <p><strong>Client calls service B directly:</strong></p>
+    <p>{{clientToServiceB}}</p>
+    <p><strong>Client calls service A directly:</strong></p>
+    <p>{{clientToServiceA}}</p>
+    <p><strong>Client calls service A, which in turn calls service B:</strong></p>
+    <p>{{serviceAToServiceB}}</p>
+</div>

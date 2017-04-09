@@ -24,7 +24,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li ng-class="{ active: isActive('/Home') }"><a href="#/Home">Home</a></li>
-                    <li ng-class="{ active: isActive('/TodoList') }"><a href="#/TodoList">Todo List</a></li>
+                    <li ng-class="{ active: isActive('/ServiceCalls') }"><a href="#/ServiceCalls">Service calls</a></li>
                     <li ng-class="{ active: isActive('/UserData') }"><a href="#/UserData" ng-show="userInfo.isAuthenticated">User</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -41,9 +41,9 @@
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1" style="background-color:azure">
                 <div class="page-header">
-                    <h1>Todo List</h1>
+                    <h1>Microservices JWT delegation</h1>
                 </div>
-                <p>This sample demonstrates how to take advantage of ADAL JS for adding Azure AD authentication to your AngularJS apps.</p>
+                <p>This sample demonstrates how the same services can be accessed using the OpenID Connect JWT access token directly from the client, and also by passing that token from one service to the other.</p>
             </div>
         </div>
         <div class="row">
@@ -62,7 +62,7 @@
         <script src="App/Scripts/app.js"></script>
         <script src="App/Scripts/homeCtrl.js"></script>
         <script src="App/Scripts/userDataCtrl.js"></script>
-        <script src="App/Scripts/todoListCtrl.js"></script>
-        <script src="App/Scripts/todoListSvc.js"></script>
+        <script src="App/Scripts/serviceCallsCtrl.js"></script>
+        <script src="App/Scripts/serviceCallsSvc.js"></script>
 </body>
 </html>
