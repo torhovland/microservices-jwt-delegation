@@ -53,7 +53,7 @@ namespace ServiceB
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
-                Authority = "https://login.windows.net/yourdirectory.onmicrosoft.com",
+                Authority = "https://login.windows.net/common",
                 TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = false, // The issuer may vary in a multitenant scenario.
